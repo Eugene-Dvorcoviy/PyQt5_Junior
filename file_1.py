@@ -1,26 +1,25 @@
 import pygame
 
+
+number = input()
+w, hue = int(number.split()[0]), int(number.split()[1])
+h = int(255 / 360 * hue)
 pygame.init()
-SCREENSIZE = width, height = 500, 500
-screen = pygame.display.set_mode(SCREENSIZE)
-clock = pygame.time.Clock()
+screen = pygame.display.set_mode((300, 300))
 running = True
-screen.fill((0, 0, 255))
-fps = 60
-x1, y1, r = 100, 100, 40
-drawing = False
-v = 10
+
 while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
-        if event.type == pygame.MOUSEBUTTONDOWN:
-            screen.fill((0, 0, 255))
-            x1, y1 = event.pos
-            drawing = True
-            r = 0
-    if drawing:
-        pygame.draw.circle(screen, (255, 255, 0), (x1, y1), int(r))
-        r += v / fps
+    screen.fill((0, 0, 0))
+    pygame.draw.rect(screen, (int(h * 0.75), 0, 0), ((100, 100), (w, w)))
+    pygame.draw.polygon(screen, (h, 0, 0), ((100, 100), (int(100 + w * 0.5), int(100 - w * 0.5)),
+                                            (int(100 + w * 1.5), int(100 - w * 0.5)),
+                                            (100 + w, 100)))
+    pygame.draw.polygon(screen, (int(h * 0.5), 0, 0), ((100 + w, 100), (int(100 + w * 1.5), int(100 - w * 0.5)),
+                                                       (int(100 + w * 1.5), int(100 + w * 0.5)),
+                                                       (100 + w, 100 + w)))
     pygame.display.flip()
 
+pygame.quit()
