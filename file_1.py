@@ -11,7 +11,7 @@ if __name__ == '__main__':
     w = QWidget()
     w.resize(250, 250)
     w.move(300, 300)
-    w.setWindowTitle('First')
+    w.setWindowTitle('First_lesson')
     w.show()
 
     sys.exit(app.exec_())
